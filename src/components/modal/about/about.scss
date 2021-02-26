@@ -1,0 +1,77 @@
+.about {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: rgba(50, 143, 231, 1);    
+    background: linear-gradient(to top right, #ffffff 47%, #155bab 60%, #21354c 100%);    
+    width: 510px;
+    //     -webkit-box-shadow: -5px 6px 100px -3px rgba(0,0,0,0.63);
+    // -moz-box-shadow: -5px 6px 100px -3px rgba(0,0,0,0.63);
+    .dark-mode &{
+        box-shadow: -5px 6px 40px -3px rgba(255, 255, 255, 0.63);    
+    }
+    box-shadow: -5px 6px 40px -3px rgba(0, 0, 0, 0.63);
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: gray;
+    .about-logo {
+      
+        height: 20px;             
+        
+        > div {
+            img {                
+                display: flex;                   
+                align-items: center;
+                width: 80px;
+                &:hover {
+                    transform: scale(1.07);
+                }
+            }
+            position: absolute;
+            top: -35px;
+            left: 40px;
+            color: #fff;
+            font-weight: 800;
+            padding: 0.5em;
+            letter-spacing: 1px;
+            display: grid;
+            grid-auto-flow: column;
+            gap: 1em;
+            align-items: center;
+            vertical-align: middle;
+            align-content: center;
+        }
+        margin-bottom: 2em;
+    }
+    .about-team {
+        // border-top-left-radius: 25%;
+        border-top-right-radius: 40%;
+        background: #fff;
+        background: white;
+        height: 100%;
+        padding: 2em;
+        display: grid;
+        justify-content: space-between;
+        gap: 8px;
+        background:linerar-gradient(to right bottom, 
+        rgba(255,255,255,.7),
+        rgba(255,255,255,.3)
+    );
+        small {
+            justify-self: end;
+        }
+    }
+    .about-footer {
+        .logos {
+            display: grid;
+            grid-auto-flow: column;
+            gap: 16px;            
+            img {
+                align-self: center;
+            }
+        }
+        // justify-content: space-between;
+    }
+}

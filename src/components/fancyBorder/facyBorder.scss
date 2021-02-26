@@ -1,0 +1,35 @@
+.active {
+    .bar-wrapper {
+        width: 100%;
+        height: 2px;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+    }
+    .bar-line {
+        animation: ant 6s ease-in-out 1s infinite;
+        
+    }
+    .bar-line {
+        width: 64px;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(24, 144, 255, 0) 0, #1890ff);
+        transform: translateX(-194px);
+    }
+
+    @keyframes ant {
+        0%,
+        25% {
+            transform: translateX(-194px);
+        }
+        75%,
+        to {
+            transform: translateX(300px);
+        }
+    }
+  
+}
+
+li {
+    overflow: hidden;
+}

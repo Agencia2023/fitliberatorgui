@@ -1,0 +1,51 @@
+.loading-info {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: grid;
+  grid-template-columns: minmax(100px, 150px);
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  font-size: 5em;
+  color: whitesmoke;
+  transition: transform 1s;
+  will-change: transform;
+  .mv{
+    position: relative;
+  }
+}
+
+@keyframes an1 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+img.loading-img {
+  animation-name: an1;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+#progress-value {
+  font-size: 0.4em;
+  color: rgb(189, 186, 186) !important;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%);
+}
+#progress-fase {
+  letter-spacing: 1px;
+  font-size: 18px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

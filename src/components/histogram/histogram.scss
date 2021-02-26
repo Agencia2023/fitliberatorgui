@@ -1,0 +1,70 @@
+.histogram {
+    margin-top:1px;
+    border: 1px solid #8080802e;
+    height: calc(30vh - 2px);
+    @media (min-height: 800px) { 
+        height: calc(20vh - 2px);
+      }
+    // height: 180px;
+    transform: translateX(150%);
+    transition: transform 0.8s ease-in;
+    .histogram-opt {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 3px;
+        label {
+            margin-right: 10px;
+        }
+    }    
+    /*
+    zoom histogram
+    */
+    // .dc-chart .brush :nth-child(6) {
+    //     fill: black;        
+    //     cursor: ew-resize;  
+    // }  
+    // .dc-chart .brush :nth-child(7){
+    //     fill: #eee;
+    //     stroke: #666;
+    //     cursor: ew-resize;
+    // } 
+    .dc-chart .brush  .selection{
+        stroke: darkslategrey;
+        fill:'url(#ramp)';
+    }
+
+    #histogram.dc-chart .brush  :nth-child(3){
+        height: 10px !important;
+        y:1px;
+        fill:'url(#ramp)';
+        // fill-opacity: 1;
+    }
+    #histogram.dc-chart .brush :nth-child(6) {
+        fill: black;        
+        cursor: ew-resize;      
+        stroke: #fff;        
+        d:path('m -15 35 q -4 1 -4 4 l 0 15 q 1 3 4 4 l 8 0 l 9 -12 l 0 0 l -9 -11 l -8 0');        
+    }     
+    #histogram.dc-chart .brush :nth-child(7) {
+        fill: #eee;
+        stroke: #666;
+        cursor: ew-resize;
+        d:path('m 15 95 q 4 1 4 4 l 0 15 q -1 3 -4 4 l -8 0 l -9 -12 l 0 0 l 9 -11 l 8 0');                
+    } 
+    #range-histogram.dc-chart .brush :nth-child(5) {
+        fill: black;        
+        cursor: ew-resize;      
+        stroke: #fff;                
+    }     
+    #range-histogram.dc-chart .brush :nth-child(6) {
+        fill: #eee;
+        stroke: #666;
+        cursor: ew-resize;                    
+    } 
+    // rect.overlay {
+    // //   stroke: #888;
+    // }
+    #histogram .deselected {
+        fill: rgb(124, 130, 148);        
+    }  
+}

@@ -1,0 +1,144 @@
+/*--------------------
+      Dark Mode
+---------------------*/
+$bg-dark: #18191a;
+
+:root{
+    --var-bg-dark:$bg-dark;
+    --var-bg:#18191a;
+}
+// $bg-dark: hsl(210, 50%, 10%);
+$bg-dark-tab: rgb(36, 37, 38);
+
+$bg-dark-hover: #3a3b3c;
+// $bg-dark: #111;
+// $bg-dark: #0a244d;
+$bg-input: rgba(125, 185, 238, 0.324);
+$color: #d8d3d3;
+$color-card: grey;
+
+#root {
+    .dark-mode & {
+        background-color: $bg-dark;
+        transition: background-color 1.2s ease-in-out;
+   
+        .selectImages__control {
+            background: $bg-dark !important;
+        }
+        .header-modal {
+            background: rgba(0, 0, 0, 0.9);
+        }
+        .selectImages__single-value,
+        .selectImages__placeholder {
+            color: $color !important;
+        }
+        .container-root > header {
+            background-color: $bg-dark-tab;
+        }
+        .container-root nav.menuOptions {
+            background-color: inherit !important;
+        }
+        
+        h1,h2,h5,.text {
+            color: #dddddd !important;
+        }
+        .header {
+            color:white;
+        }
+        input,
+        button:not(.red) {
+            background-color: $bg-input;
+            transition: background-color 0.2s ease-in;
+        }
+        button:hover{ 
+            opacity: .9;
+            background: linear-gradient(45deg, rgba(223, 223, 223, 0.137), #02113f9b) !important;
+        }
+        button.basic {
+            box-shadow: 0 0 0 1px rgba(244, 249, 255, 0.15) inset !important;
+        }
+        .ui.selection.dropdown {
+            background-color: $bg-input;
+            color: $color;
+        }
+        main .op-preview .op-data,.optionsModal,
+        .content {
+            background-color: $bg-dark;
+            transition: transform 0.2s, max-height 0.2s ease-out, background-color 1.2s ease-in-out;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: $bg-input;
+            border-radius: 50px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e2730;
+            border: 0px none #ffffff;
+            border-radius: 53px;
+        }
+        pre,
+        label,
+        th,
+        // td,
+        input,
+        .sidebar-navigation, 
+        button:not(.loading),
+        .item:not(.active),
+        // .ui.card .extra,
+        .helpguide {
+            color: $color !important;
+        }
+        td,.ui.card .extra{
+            color:$color-card
+        }
+        .ui.card {
+            background-color: $bg-dark;
+            transition: background-color 1.3s ease-in-out;
+        }
+
+        button.basic:hover {
+            background-color: inherit !important;
+            box-shadow: 0 0 0 1px rgba(240, 242, 245, 0.541) inset !important;
+        }
+        .ui.selectable.table tbody tr:hover,
+        .ui.table tbody tr td.selectable:hover {
+            background: rgba(0, 0, 0, 0.5) !important;
+            color: rgba(0, 0, 0, 0.95) !important;
+        }
+
+        svg > defs > linearGradient > stop:nth-of-type(2n) {
+            stop-color: #1e2730;
+        }
+
+        svg > defs > linearGradient > stop:nth-of-type(2n + 1) {
+            stop-color: #2d3641;
+        }
+
+        // BitDepth
+        .btns-options {
+            input[type="radio"]:checked + label, input[type="checkbox"]:checked + label {
+                color: white;
+                background-image: none;
+                border: none;
+                background-color: $bg-dark-hover;
+            }
+            input[type="radio"] + label ,input[type="checkbox"] + label {
+                color: white;
+                background-image: none;
+                background-color: $bg-dark;
+                border: none;
+                border-bottom-color: rgba(125, 185, 238, 0.324);
+                box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.2), 0 1px 2px rgba(255, 255, 255, 0.01);
+                text-shadow: none;
+                border-bottom-color: none;
+            }
+        }
+        rect.selection {
+            stroke: #ccc;
+        }
+
+        .ErrorBoundary {
+            color: $color;
+        }
+    }
+}

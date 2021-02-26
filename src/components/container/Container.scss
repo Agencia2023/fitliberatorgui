@@ -1,0 +1,17 @@
+
+
+.container-root {
+    display: grid;
+    grid-template-columns: 3fr 160px;
+    grid-template-rows: 50px 1fr;
+    height: 100vh;    
+    grid-template-areas:
+        "header menu"
+        "main   menu";
+}
+
+@media only screen and (max-width: 766px) {
+    .container-root {
+        grid-gap: 3px;
+    }
+}

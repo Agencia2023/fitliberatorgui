@@ -1,0 +1,8 @@
+{
+    "scss.lint.unknownProperties" :"ignore",
+    "launch": {
+        
+        "configurations": [],
+        "compounds": []
+    }
+}

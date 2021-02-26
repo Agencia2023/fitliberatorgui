@@ -1,0 +1,142 @@
+{
+  "main": "public/Main.js",
+  "homepage": "./",
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^3.0.0",
+    "concurrently": "^5.0.2",
+    "cpx": "^1.5.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.2.1",
+    "dotenv-webpack": "^2.0.0",
+    "electron": "8.5.5",
+    "electron-builder": "^22.10.4",
+    "electron-packager": "^15.2.0",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.2.0",
+    "mini-css-extract-plugin": "^0.10.0",
+    "node-sass": "^4.14.1",
+    "nodemon": "^2.0.4",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "sass-loader": "^9.0.3",
+    "source-map-loader": "^1.1.2",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^4.1.0",
+    "url-loader": "^4.1.0",
+    "wait-on": "^5.2.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-manifest-plugin": "^2.0.4"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "gui": "webpack-dev-server --config ./webpack.dev.config.js ",
+    "react-build": "webpack --config ./webpack.config.js --progress",
+    "postreact-build": "cpx \"public/**/*\" build -u",
+    "preelectron-pack": "npm run react-build",
+    "electron-pack": "electron-builder -c.extraMetadata.main=build/Main.js",
+    "electron-build": "electron-builder",
+    "win-cert": "electron-builder create-self-signed-cert -p BitPointer.co",
+    "electron": "nodemon --exec \"electron .\" ",
+    "prebuild": "npm run react-build",
+    "build": "electron-builder",
+    "build:win": "npm run build -- --win",
+    "build:linux": "npm run build -- --linux",
+    "build:mac": "npm run build -- --mac",
+    "start": "concurrently \"cross-env BROWSER=none npm run gui\" \"wait-on http://localhost:9000 && electron . --allow-file-access-from-files\" "
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "name": "fitsliberator",
+  "productName ": "FITS Liberator",
+  "keywords": [
+    "FITS Liberator"
+  ],
+  "description": "Open FITS file",
+  "version": "4.0.0",
+  "author": "NOIRLab/IPAC/ESA/STScI/CfA <00jdzl@gmail.com>",
+  "build": {
+    "appId": "com.bitpointer.fitsliberator",
+    "productName": "FITS Liberator",
+    "fileAssociations": [
+      {
+        "ext": [
+          "fits",
+          "fz",
+          "fit"
+        ],
+        "name": "Fits File",
+        "role": "Editor"
+      }
+    ],
+    "win": {
+      "icon": "public/images/fl4.ico",
+      "certificateFile": "private/fl4.pfx",
+      "certificatePassword": "",
+      "verifyUpdateCodeSignature": false,
+      "publisherName" :"FITS Liberator"
+    },
+    "mac": {
+      "icon": "public/images/fl4.icns",
+      "hardenedRuntime": true,
+      "entitlements": "entitlements.mac.inherit.plist",
+      "category": "public.app-category.utilities",
+      "target":	 "dmg"
+    },
+    "linux": {
+      "category": "Utility",
+      "target": [
+        "deb",
+        "snap",
+        "rpm"
+      ]
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "./public/Main.js",
+      "./public/utils/**"
+    ],
+    "extraFiles": [
+      {
+        "from": "fitscli",
+        "to": "fitscli",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "optionalDependencies": {},
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "electron-is-dev": "^1.1.0",
+    "electron-json-storage": "^4.1.8",
+    "electron-log": "^4.1.1",
+    "find-remove": "^2.0.3",
+    "fs-extra": "^9.0.0",
+    "react": "^16.12.0",
+    "react-content-loader": "^5.0.4",
+    "react-dom": "^16.12.0",
+    "react-dropzone": "^11.2.4",
+    "react-redux": "^7.2.0",
+    "react-select": "^3.2.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "rimraf": "^3.0.2",
+    "upng-js": "^2.1.0"
+  }
+}

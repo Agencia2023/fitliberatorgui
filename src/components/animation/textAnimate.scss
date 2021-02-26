@@ -1,0 +1,10 @@
+.textAnimate {
+    font-family: sans-serif;
+}
+.textAnimate span {
+    opacity: 0;
+    transition: opacity .4s ease;
+}
+.textAnimate span.fade {
+    opacity: 1;
+}

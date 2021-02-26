@@ -1,0 +1,35 @@
+.optionsModal {
+    width: 650px;
+    //     -webkit-box-shadow: -5px 6px 100px -3px rgba(0,0,0,0.63);
+    // -moz-box-shadow: -5px 6px 100px -3px rgba(0,0,0,0.63);
+    box-shadow: -5px 6px 40px -3px rgba(0, 0, 0, 0.63);
+    padding: 2em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    .optionsModal-close {
+        position: absolute;
+        left: 90%;
+        // top:-5px;
+        cursor: pointer;
+        color: rgb(185, 177, 177);
+        font-size: 1.5em;
+
+        &:hover {
+            color: rgb(136, 132, 132);
+            transform: scale(1.1);
+        }
+    }
+    summary {
+        outline-style: none;
+    }
+    small {
+        color: rgb(7, 163, 7);
+        font-weight: 900;
+        letter-spacing: 1px;
+    }
+}

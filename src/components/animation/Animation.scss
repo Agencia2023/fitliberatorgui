@@ -1,0 +1,20 @@
+.animation-fn {
+    transform-origin: center top;
+    transition: transform 0.5s ease, max-height 0.8s ease-out;
+    will-change: transform, height;
+    max-height: 0;
+    margin-top: 8px;
+    &.ltr {
+        transform: translateX(-120%);
+    }
+    &.rtl {
+        transform: translateX(120%);
+    }
+
+    &.run {
+        max-height: 480px;
+        transform-origin: center right;
+        transform: translateX(0);
+        transition: transform 0.5s ease, max-height 0.3s ease-in;
+    }
+}

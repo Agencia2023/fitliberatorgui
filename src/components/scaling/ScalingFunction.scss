@@ -1,0 +1,22 @@
+.wrapper-scalingFunction {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 2px;
+  margin-bottom: 5px;  
+  position: relative;
+  li{
+    text-transform: capitalize !important;
+    font-weight: 900 !important;
+
+    &.item.active{
+      // background-color: rgba(0, 0, 0,8) !important;
+      // background-color: red !important;
+      border-bottom: none !important;
+    }
+    .dark-mode &.item.active{
+      background-color: none var(  --var-bg-dark) !important;
+      border-bottom:  1px solid var( --var-bg) !important;
+      color: #fff !important;
+    }
+  }
+}
