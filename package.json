@@ -36,7 +36,7 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-manifest-plugin": "^2.0.4"
   },
-  "license": "UNLICENSED",
+  "license": "BSD-3-Clause",
   "private": true,
   "scripts": {
     "gui": "webpack-dev-server --config ./webpack.dev.config.js ",
