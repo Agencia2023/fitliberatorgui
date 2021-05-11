@@ -63,7 +63,7 @@
     "FITS Liberator"
   ],
   "description": "Open FITS file",
-  "version": "4.0.0",
+  "version": "4.0.0-build1",
   "author": "NOIRLab/IPAC/ESA/STScI/CfA <00jdzl@gmail.com>",
   "build": {
     "appId": "com.bitpointer.fitsliberator",

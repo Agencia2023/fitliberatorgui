@@ -1,12 +1,11 @@
-import { Debugger } from "electron"
+
 
 function isEqual(new_params, old_params) {
     return new_params.s === old_params.s &&
         new_params.k === old_params.k &&
         new_params.S === old_params.S &&
         new_params.p === old_params.p
-    // new_params.w === old_params.w &&
-    // new_params.b === old_params.b
+    
 }
 export const saveScale = (new_params, old_params, imageSelected) => {
 
@@ -92,7 +91,7 @@ export const singleDescale = (value, old_params) => {
     } else if (old_params.s === 'asinh') {
         value = descale_asinh(value, old_params.k, old_params.p, old_params.S)
     } else {
-        Debugger
+        
         value = descale_linear(value, old_params.p)
 
     }
@@ -100,7 +99,7 @@ export const singleDescale = (value, old_params) => {
     return value
 
 }
-export const signleScale = (value, { s, k, p, e, S, w, b }) => {
+export const singleScale = (value, { s, k, p, e, S, w, b }) => {
 
     if (s === 'pow') {
         value = scale_pow(value, k, p, e)

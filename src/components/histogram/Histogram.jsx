@@ -3,7 +3,7 @@ import './histogram.scss'
 import HistogramChart from '../../utils/Histogram'
 import BlackWhiteLevel from '../BlackWhiteLevel'
 import initialGuess from '../../utils/initial_guess'
-import { signleScale, singleDescale } from '../../utils/scaledFunctions'
+import { singleScale } from '../../utils/scaledFunctions'
 import { transformNumber } from '../../utils/general'
 
 
@@ -15,8 +15,8 @@ const generateLines = ({ mean, max, min, peakLevel, backgroundLevel }, props) =>
 	const { old_parameters, imageSelected } = props
 
 	if (!imageSelected.original) {
-		peakLevel = signleScale(peakLevel, old_parameters[1])
-		backgroundLevel = signleScale(backgroundLevel, old_parameters[1])
+		peakLevel = singleScale(peakLevel, old_parameters[1])
+		backgroundLevel = singleScale(backgroundLevel, old_parameters[1])
 
 	}
 
@@ -133,9 +133,12 @@ class Histogram extends React.PureComponent {
 		bl.addEventListener('change', () => {
 			isOnchangeActive = true
 
+			const wlvl = parseFloat(wl.value)
+			const blvl = parseFloat(bl.value)
 
-			if (bl.value >= wl.value)
-				bl.value = transformNumber(wl.value - (wl.value - bl.value) / 1e3)
+			if (blvl >= wlvl)
+				bl.value = transformNumber(wlvl + (wlvl - blvl) / 1e3)
+
 
 			const { min } = this.props.imageSelectedData?.statistics
 
@@ -157,8 +160,19 @@ class Histogram extends React.PureComponent {
 		 */
 		wl.addEventListener('change', () => {
 
-
 			isOnchangeActive = true
+
+			const wlvl = parseFloat(wl.value)
+			const blvl = parseFloat(bl.value)
+
+			if (wlvl <= blvl) {
+				console.log(bl.value)
+				wl.value = transformNumber(blvl + (blvl - wlvl) / 1e3)
+
+				console.log(bl.value)
+
+			}
+
 
 			const { max } = this.props.imageSelectedData?.statistics
 
@@ -182,10 +196,11 @@ class Histogram extends React.PureComponent {
 		 */
 		window.addEventListener('resize', this.handleResize)
 	}
-	handleMouseUp = e => {
-
+	handleMouseUp = (e) => {
+		console.log('handleMouseUp - remove Listeners')
 		this.safeToApply = true
 
+		console.log(this.safeToApply)
 		window.removeEventListener('mouseup', this.handleMouseUp, true);
 	}
 	componentWillUnmount() {
@@ -250,11 +265,11 @@ class Histogram extends React.PureComponent {
 		const { new_parameters, old_parameters, imageSelectedData: { statistics }, imageSelected: { original } } = this.props
 
 		return initialGuess(
-			sizeHS,
 			statistics,
 			original,
 			new_parameters,
-			old_parameters[0]
+			old_parameters[0],
+			this.props.histogramData
 		)
 
 	}

@@ -202,8 +202,8 @@ class Processing extends React.Component {
 
         // return { x, y }
         return {
-            x: realX.toFixed(1),
-            y: realY.toFixed(1),
+            x: realX.toFixed(0),
+            y: realY.toFixed(0),
             value: descale(getRawPixelXY(raw, width, x, y), min, max).toFixed(1)
         }
     }

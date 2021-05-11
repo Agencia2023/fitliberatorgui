@@ -37,7 +37,7 @@ const About = props => {
 
     const rnd = Math.round(Math.random() * 1)
     const { version } = useSelector(state => state.workspace)
-
+    const build = "1"
     return (
         <Modal {...props}>
             <div className="about">
@@ -52,9 +52,10 @@ const About = props => {
                 <div className="about-team">
                     <AboutItem desc="Developers" value={`${developer_team[rnd]} & ${developer_team[Number(!rnd)]}`} />
                     <AboutItem desc="Technical & scientific support and testing" value="Robert Hurt" />
+                    <AboutItem desc="Technical Project Manager" value="Javier Enciso" />
                     <AboutItem desc="Project Executive" value="Lars Lindberg Christensen" />
 
-                    <small className="about-version"><TextAnimate> Version {version} </TextAnimate></small>
+                    <small className="about-version"><TextAnimate> Version {version} </TextAnimate></small>                    
                     <Divider />
 
                     <footer className="about-footer">
