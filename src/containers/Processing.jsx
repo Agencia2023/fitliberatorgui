@@ -23,6 +23,7 @@ import OSDMenu from '../components/osdMenu/OSDMenu'
 import { descale, getRawPixelXY, getRealValue } from '../utils/filter'
 import About from '../components/modal/about/About'
 import OptionsModal from '../components/modal/options/OptionsModal'
+import KeyboardShortcuts from '../components/KeyboardShortcuts'
 
 const space = 32
 class Processing extends React.Component {
@@ -121,7 +122,7 @@ class Processing extends React.Component {
              * PNG buffer 
              */
             const buffer = tileRequest.response;
-            
+
             actions.setOriginalRawImage(buffer)
             actions.applyFilterOSD()
 
@@ -199,8 +200,6 @@ class Processing extends React.Component {
         const realX = x * original_width / width
         const realY = y * original_height / height
 
-
-        // return { x, y }
         return {
             x: realX.toFixed(0),
             y: realY.toFixed(0),
@@ -210,7 +209,24 @@ class Processing extends React.Component {
 
     onChangeBW = d => this.props.actions.setParameters(d)
     onChange = e => this.props.actions.setParameters({ [e.target.name]: e.target.value })
+    arrowUpFN = () => {
+        const I = this.props.images.findIndex(image => this.props.imageSelected.value === image.value)
 
+        if (I === this.props.images.length - 1)
+            return
+
+        const nextImage = this.props.images[I + 1]
+        this.props.actions.changeImage(nextImage)
+
+    }
+    arrowDownFN = () => {
+        const I = this.props.images.findIndex(image => this.props.imageSelected.value === image.value)
+        if (I === 0)
+            return
+
+        const nextImage = this.props.images[I - 1]
+        this.props.actions.changeImage(nextImage)
+    }
     render() {
         const { showStats, showCurrentPointData, cPointData } = this.state
 
@@ -220,6 +236,7 @@ class Processing extends React.Component {
 
         return (
             <main>
+                <KeyboardShortcuts arrowUpFN={this.arrowUpFN} arrowDownFN={this.arrowDownFN} />
                 <ErrorBoundary>
                     <OSDMenu />
                 </ErrorBoundary>
@@ -253,6 +270,7 @@ class Processing extends React.Component {
                                     name="image"
                                     value={this.props.imageSelected}
                                     onChange={imageSelected => {
+
                                         if (this.props.imageSelected.value === imageSelected.value)
                                             return
 

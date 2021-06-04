@@ -63,7 +63,7 @@
     "FITS Liberator"
   ],
   "description": "Open FITS file",
-  "version": "4.0.0-build1",
+  "version": "4.0.0-build2",
   "author": "NOIRLab/IPAC/ESA/STScI/CfA <00jdzl@gmail.com>",
   "build": {
     "appId": "com.bitpointer.fitsliberator",
@@ -84,14 +84,14 @@
       "certificateFile": "private/fl4.pfx",
       "certificatePassword": "",
       "verifyUpdateCodeSignature": false,
-      "publisherName" :"FITS Liberator"
+      "publisherName": "FITS Liberator"
     },
     "mac": {
       "icon": "public/images/fl4.icns",
       "hardenedRuntime": true,
       "entitlements": "entitlements.mac.inherit.plist",
       "category": "public.app-category.utilities",
-      "target":	 "dmg"
+      "target": "dmg"
     },
     "linux": {
       "category": "Utility",
@@ -137,6 +137,7 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "rimraf": "^3.0.2",
-    "upng-js": "^2.1.0"
+    "upng-js": "^2.1.0",
+    "use-keyboard-shortcut": "^1.0.6"
   }
 }

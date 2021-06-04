@@ -10,6 +10,10 @@ function clone(selector) {
     return d3.select(node.parentNode.insertBefore(node.cloneNode(true), node.nextSibling));
 }
 
+function addMinMaxLabel(chart, { min, max }) {
+
+}
+
 /**
  * class Histogram
  * define histogram using DC.js, crossfilter and D3.js
@@ -18,7 +22,7 @@ class HistogramChart {
 
     constructor(customProps) {
 
-        const defaultProps = { id: 'hs', data: [], width: 300, height: 100, margins: { left: 20, top: 0, right: 20, bottom: 5 } }
+        const defaultProps = { id: 'hs', data: [], width: 300, height: 100, margins: { left: 20, top: 15, right: 20, bottom: 5 } }
 
         const props = { ...defaultProps, ...customProps }
 
@@ -44,6 +48,8 @@ class HistogramChart {
 
     }
 
+    setStatistics = s => this.statistics = s
+
     setWidth = w => {
         this.width = w
         this.chart.width(w); return this
@@ -68,6 +74,8 @@ class HistogramChart {
         this.group = this.dimension.group().reduceSum(d => parseFloat(d.y).toFixed(0));
         this.min = (this.dimension.bottom(1)[0].x)
         this.max = (this.dimension.top(1)[0].x)
+        this.minY = (this.dimension.bottom(1)[0].y)
+        this.maxY = (this.dimension.top(1)[0].y)
 
         return this
 
@@ -84,7 +92,6 @@ class HistogramChart {
             .margins(this.margins)
             .dimension(this.dimension)
             .group(this.group)
-
             .x(x)
             .xUnits(dc.units.fp.precision(0.5))
             // .colors(["darkblue"])            
@@ -95,7 +102,7 @@ class HistogramChart {
 
         this.chart.filterHandler((dimension, filters) => {
             if (filters.length === 0) {
-                
+
                 this.chart.replaceFilter([this.min, this.max])
                 dc.renderAll()
                 return
@@ -133,7 +140,7 @@ class HistogramChart {
              * lines
              */
             if (this.data.length > 1) {
-                
+
                 this.currentLines.forEach(({ color, val }) => this.addLine(chart, val, color))
             }
 
@@ -170,7 +177,62 @@ class HistogramChart {
             d3.selectAll("svg .selection")
                 .attr("fill", "url(#ramp)")
 
-                
+            /**
+             * Text min - max
+             */
+            if (this.statistics) {
+                const { min, max } = this.statistics
+
+                let brushBegin = [], brushEnd = [];
+                if (chart.filter()) {
+                    brushBegin = [this.min];
+                    brushEnd = [this.max];
+                    // brushBegin = [chart.filter()[0]];
+                    // brushEnd = [chart.filter()[1]];
+                }
+                let beginLabel = chart.select('g.brush')
+                    .selectAll('text.brush-begin')
+                    .data(brushBegin);
+                beginLabel.exit().remove();
+                beginLabel = beginLabel.enter()
+                    .append('text')
+                    .attr('class', 'brush-begin')
+                    .attr('text-anchor', 'begin')
+                    .attr('dominant-baseline', 'text-top')
+                    .attr('fill', 'grey')
+                    .attr('font-size', '12px')
+                    .attr('y', -8)
+                    // .attr('y', chart.margins().top -15 )
+                    .attr('dy', 4)
+                    .merge(beginLabel);
+                beginLabel
+                    .attr('x', 0)
+                    // .attr('x', d => chart.x()(d) + 38)
+                    .text(parseFloat(min).toPrecision(5));
+
+
+                let endLabel = chart.select('g.brush')
+                    .selectAll('text.brush-end')
+                    .data(brushEnd);
+                endLabel.exit().remove();
+                endLabel = endLabel.enter()
+                    .append('text')
+                    .attr('class', 'brush-end')
+                    .attr('text-anchor', 'start')
+                    .attr('dominant-baseline', 'text-top')
+                    .attr('direction', 'rtl')
+                    .attr('fill', 'grey')
+                    .attr('font-size', '12px')
+                    // .attr('y', chart.margins().top - 15 )
+                    .attr('y', -8)
+                    .attr('dy', 4)
+                    .merge(endLabel);
+                endLabel
+                    .attr('x', d => chart.x()(d))
+                    .attr("viewBox", "0 0 200 400")
+                    .text(parseFloat(max).toPrecision(5));
+
+            }
 
         }); // end pretransition event    
 
@@ -178,8 +240,9 @@ class HistogramChart {
 
         this.chart
             .yAxis().ticks(0)
-        this.chart            
+        this.chart
             .xAxis().tickFormat(d3.format('.3s'))
+
 
 
 
@@ -191,11 +254,11 @@ class HistogramChart {
     addLine(chart, position, color) {
         const x_vert = position
         let extra_data = [
-            { x: chart.x()(x_vert), y: 10 },
-            { x: chart.x()(x_vert), y: chart.effectiveHeight() }
+            { x: chart.x()(x_vert), y: this.margins.top + 10 },
+            { x: chart.x()(x_vert), y: chart.effectiveHeight() + 15 }
         ];
         let line = d3.line()
-            .x((d) => { return d.x + this.margins.left; })            
+            .x((d) => { return d.x + this.margins.left; })
             .y(function (d) { return d.y; })
             .curve(d3.curveLinear);
         let chartBody = chart.select('g');
@@ -249,4 +312,4 @@ class HistogramChart {
 }
 
 
-export default HistogramChart 
+export default HistogramChart

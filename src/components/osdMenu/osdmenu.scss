@@ -10,12 +10,23 @@
 //Color Variables
 $sidebar-background-color: #313443;
 $active-sidebar-link-color: #22252e;
+// $active-sidebar-link-color: #22252e;
 $hover-sidebar-link-color: $active-sidebar-link-color;
 $tooltip-background-color: $sidebar-background-color;
 
 #toolbarDiv.fullpage {
 	position: absolute !important;
 	z-index: 2;
+}
+.dark-mode #full-page {	
+	polygon {
+		fill: #fff;
+	}
+}
+.sidebar-navigation {
+	ul {
+		margin-bottom: 2.8em;		
+	}
 }
 .sidebar-navigation {
 	display: inline-block;
@@ -26,7 +37,7 @@ $tooltip-background-color: $sidebar-background-color;
 	ul {
 		text-align: center;
 		// color: white;
-		
+
 		list-style: none;
 
 		li {
@@ -52,11 +63,16 @@ $tooltip-background-color: $sidebar-background-color;
 			&:hover {
 				background-color: $hover-sidebar-link-color;
 				transform: scale(1.001);
-				color:#fff;				
+				color: #fff;
 
 				.tooltip {
 					visibility: visible;
 					opacity: 1;
+				}
+				#full-page {					
+					polygon {
+						fill: #fff;
+					}
 				}
 			}
 			.active {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { dotNumber } from '../utils/general'
 import { BlackLevelIcon, WhiteLevelIcon } from './Icon'
 
 export const BlackWhiteLevel = () => {
@@ -10,7 +11,7 @@ export const BlackWhiteLevel = () => {
                 Black level
             </label>
                 <div className="ui action labeled input mini left floated" style={{ width: 90 }}>
-                    <input type="number" name="b" id="blacklvl"  placeholder="..." />
+                    <input type="number" name="b" id="blacklvl"  placeholder="..."  step="0.001" onChange={x=> x.value = dotNumber(x)}/>
                 </div>
             </div>
             <div className="field">

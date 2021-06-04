@@ -1,10 +1,12 @@
 import React from 'react'
 import Icon from '../Icon'
 
-const OSDMenuItem = ({ id, icon }) => {
+const OSDMenuItem = ({ id, icon: IconAsParam }) => {
+
+
     return <li>
         <div id={id}>
-            <Icon name={icon} />
+            {typeof IconAsParam === 'string' ? <Icon name={IconAsParam} /> : <IconAsParam />}
         </div>
     </li>
 }

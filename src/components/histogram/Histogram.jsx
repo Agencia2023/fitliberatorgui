@@ -110,10 +110,7 @@ class Histogram extends React.PureComponent {
 		/**
 		 * mouse release 
 		 */
-		document.getElementById('histogram').addEventListener('mousedown', () => {
-			this.safeToApply = false
-			window.addEventListener('mouseup', this.handleMouseUp, true)
-		}, true)
+		document.getElementById('histogram').addEventListener('mousedown', this.handleMouseDown, true)
 
 		if (dat.length > 1) {
 
@@ -196,6 +193,10 @@ class Histogram extends React.PureComponent {
 		 */
 		window.addEventListener('resize', this.handleResize)
 	}
+	handleMouseDown = e => {
+		this.safeToApply = false
+		window.addEventListener('mouseup', this.handleMouseUp, true)
+	}
 	handleMouseUp = (e) => {
 		console.log('handleMouseUp - remove Listeners')
 		this.safeToApply = true
@@ -205,8 +206,8 @@ class Histogram extends React.PureComponent {
 	}
 	componentWillUnmount() {
 		window.removeEventListener('resize', this.handleResize)
-		document.getElementById('histogram').removeEventListener('mousedown')
-		document.getElementById('histogram').removeEventListener('mouseup')
+		document.getElementById('histogram').removeEventListener('mousedown', this.handleMouseDown)
+		document.getElementById('histogram').removeEventListener('mouseup', this.handleMouseUp)
 
 		clearTimeout(this.drawTimer)
 	}
@@ -268,7 +269,7 @@ class Histogram extends React.PureComponent {
 			statistics,
 			original,
 			new_parameters,
-			old_parameters[0],
+			old_parameters?.[0],
 			this.props.histogramData
 		)
 
@@ -298,7 +299,7 @@ class Histogram extends React.PureComponent {
 			onChange({ p: transformNumber(w) })
 		}
 
-
+		this.hs2.setStatistics(this.props.imageSelectedData?.statistics)
 		this.hs2.setData(data,
 			generateLines(
 				{
