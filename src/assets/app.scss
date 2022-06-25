@@ -28,12 +28,6 @@ input[type="number"] {
   border-bottom: 3px solid #1b67a0 !important;
 }
 
-.btns-options {
-  // margin-top: 2px;
-  display: grid;
-  grid-auto-flow: row;
-  grid-gap: 5px;
-}
 #openseadragonViewer {
   .openseadragon-canvas {
     outline: none;
@@ -370,6 +364,10 @@ fieldset {
 // override
 
 .btns-options {
+   // margin-top: 2px;
+   display: grid;
+   grid-auto-flow: row;
+   grid-gap: 5px;
   font-family: calibri !important;
 
   -webkit-touch-callout: none; /* iOS Safari */
