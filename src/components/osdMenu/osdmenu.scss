@@ -24,17 +24,13 @@ $tooltip-background-color: $sidebar-background-color;
 	}
 }
 .sidebar-navigation {
-	ul {
-		margin-bottom: 2.8em;		
-	}
-}
-.sidebar-navigation {
 	display: inline-block;
 	width: 40px;
 	color: #1e1b1b;
 	// background-color: $sidebar-background-color;
 
 	ul {
+		margin-bottom: 2.8em;	
 		text-align: center;
 		// color: white;
 
