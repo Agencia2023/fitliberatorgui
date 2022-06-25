@@ -9,7 +9,7 @@ import  { BlackLevelIcon, WhiteLevelIcon } from '../Icon'
 import { connect } from 'react-redux'
 import Animation from '../animation/Animation'
 import { descaled_White_Black_Level } from '../../utils/initial_guess'
-import Checkbox from '../Checkbox'
+
 import Circle from '../circle/Circle'
 import { transformNumber } from '../../utils/general'
 
